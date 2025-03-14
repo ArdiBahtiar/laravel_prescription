@@ -201,7 +201,7 @@
           </div>
         </div>
     </div>
-    <div class="row mt-4">
+    <div class="row mt-4 mb-3 mx-1">
         <div class="col-12 text-end">
             <button type="submit" class="btn btn-primary">Simpan Data</button>
         </div>

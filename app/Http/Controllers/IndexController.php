@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Medicine;
 use App\Models\Patient;
+use App\Models\Checkup;
+use App\Models\Prescription;
 use Illuminate\Http\Request;
 
 class IndexController extends Controller
@@ -39,6 +41,8 @@ class IndexController extends Controller
             'page_name' => 'mailbox',
             'has_scrollspy' => 0,
             'scrollspy_offset' => '',
+            'patient' => Patient::all(),
+            'checkups' => Checkup::all()
         ];
         return view('apps.dashboard')->with($data);
     }
