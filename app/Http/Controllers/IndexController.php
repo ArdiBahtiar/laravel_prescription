@@ -42,7 +42,8 @@ class IndexController extends Controller
             'has_scrollspy' => 0,
             'scrollspy_offset' => '',
             'patient' => Patient::all(),
-            'checkups' => Checkup::all()
+            'checkups' => Checkup::with('prescription.medicines.medicine')->get(),
+            // 'checkups' => Checkup::all()
         ];
         return view('apps.dashboard')->with($data);
     }

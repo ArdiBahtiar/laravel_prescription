@@ -296,18 +296,35 @@
                                                         </div>
                                                     </div>
                                                     
+
                                                     <div class="row mt-4 mb-3">
                                                         <div class="col-sm-7 align-self-center">
-                                                            <p>Resep Obat: </p>
+                                                            <p>Resep Obat:</p>
                                                         </div>
-
-                                                        <div class="col-sm-8 align-self-center order-sm-0 order-1">
-                                                            <p class="inv-detail-title">1. <span class="inv-number text-primary">Paracetamol 500mg</span> (3x1 sehari)</p>
-                                                        </div>
-
-                                                        <div class="col-sm-8 align-self-center order-sm-0 order-1">
-                                                            <p class="inv-detail-title">2. <span class="inv-number text-primary">Amoxicillin 500mg</span> (3x1 sehari)</p>
-                                                        </div>
+                                                    
+                                                        {{-- @foreach ($checkups as $checkup) --}}
+                                                            <div class="col-sm-12">
+                                                                {{-- <h5>Checkup ID: {{ $checkup->id }}</h5> --}}
+                                                    
+                                                                @if ($checkup->prescription && $checkup->prescription->medicines->isNotEmpty())
+                                                                    @foreach ($checkup->prescription->medicines as $index => $medicine)
+                                                                        <div class="col-sm-8 align-self-center order-sm-0 order-1">
+                                                                            <p class="inv-detail-title">
+                                                                                {{ $index + 1 }}. 
+                                                                                <span class="inv-number text-primary">
+                                                                                    {{ $medicine->medicine->name }}
+                                                                                </span> 
+                                                                                ({{ $medicine->quantity }}x sehari)
+                                                                            </p>
+                                                                        </div>
+                                                                    @endforeach
+                                                                @else
+                                                                    <div class="col-sm-8 align-self-center order-sm-0 order-1">
+                                                                        <p class="inv-detail-title text-danger">No prescription found</p>
+                                                                    </div>
+                                                                @endif
+                                                            </div>
+                                                        {{-- @endforeach --}}
                                                     </div>
 
                                                     <div class="row mt-5 mb-3">
